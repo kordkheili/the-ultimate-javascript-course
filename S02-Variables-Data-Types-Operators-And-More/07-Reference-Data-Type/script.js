@@ -34,5 +34,18 @@ const hugeNumber2 = 9009943634637537838n;
 console.log(hugeNumber1, typeof hugeNumber1);
 console.log(hugeNumber2, typeof hugeNumber2);
 
-
 // ! Reference Data Type
+//Object
+const person1 = {
+  firstName: "alireza",
+  lastName: "mohammadi",
+};
+console.log(person1, typeof person1);
+
+const numbers = [2, 4, 6, 8];
+console.log(numbers, typeof numbers);
+
+const sayHello = function () {
+  console.log("سلام رفیق!");
+};
+console.log(sayHello, typeof sayHello);
