@@ -19,11 +19,11 @@ body {
   width: 100%;
 }
 img {
-  width: 2rem;
+  width: 4rem;
   vertical-align: middle;
 }
 p span {
-  font-size: 2rem;
+  font-size: 4rem;
   margin-left: 0.3rem;
   font-weight: 500;
   vertical-align: middle;
