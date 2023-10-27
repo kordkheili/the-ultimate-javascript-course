@@ -264,7 +264,7 @@ const alirezaArray = [
 ];
 
 //Object
-const alirezaObject = {
+/* const alirezaObject = {
   firstName: "Alireza",
   lastName: "Mohammadi",
   job: "Full-Stack Developer",
@@ -273,7 +273,29 @@ const alirezaObject = {
   getAge: function () {
     return 2028 - this.birthYear;
   },
+}; */
+const alirezaObject = {
+  firstName: "Alireza",
+  lastName: "Mohammadi",
+  job: "Teacher",
+  birthYear: 1994,
 };
+alirezaObject.job = "Full-Stack Developer";
+alirezaObject["birthYear"] = 1994;
+
+delete alirezaObject.firstName; // or delete alirezaObject["firstName"];
+console.log(alirezaObject);
+
+const a = "Year";
+
+//Bracket Notation
+console.log(alirezaObject["firstName"]); // "Alireza"
+console.log(alirezaObject["birth" + a]); // 1998
+
+// Dot Notation
+console.log(alirezaObject.firstName); // "Alireza"
+console.log(alirezaObject.birthYear); // 1998
+
 console.log(alirezaObject.getAge());
 //Output: 30
 
