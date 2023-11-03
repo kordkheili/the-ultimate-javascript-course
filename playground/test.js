@@ -255,13 +255,13 @@ console.log(nestedArray[1][1]); //Output: 200 */
 // console.log(friends.includes("Ahmad")); //false
 
 //Array
-const alirezaArray = [
-  "Alireza",
-  "Mohammadi",
-  "Full-Stack Developer",
-  1998,
-  ["Mostafa", "Hesam", "Arman"],
-];
+// const alirezaArray = [
+//   "Alireza",
+//   "Mohammadi",
+//   "Full-Stack Developer",
+//   1998,
+//   ["Mostafa", "Hesam", "Arman"],
+// ];
 
 //Object
 /* const alirezaObject = {
@@ -274,40 +274,122 @@ const alirezaArray = [
     return 2028 - this.birthYear;
   },
 }; */
-const alirezaObject = {
-  firstName: "Alireza",
-  lastName: "Mohammadi",
-  job: "Teacher",
-  birthYear: 1994,
-};
-alirezaObject.job = "Full-Stack Developer";
-alirezaObject["birthYear"] = 1994;
+// const alirezaObject = {
+//   firstName: "Alireza",
+//   lastName: "Mohammadi",
+//   job: "Teacher",
+//   birthYear: 1994,
+// };
+// alirezaObject.job = "Full-Stack Developer";
+// alirezaObject["birthYear"] = 1994;
 
-delete alirezaObject.firstName; // or delete alirezaObject["firstName"];
-console.log(alirezaObject);
+// delete alirezaObject.firstName; // or delete alirezaObject["firstName"];
+// console.log(alirezaObject);
 
-const a = "Year";
+// const a = "Year";
 
-//Bracket Notation
-console.log(alirezaObject["firstName"]); // "Alireza"
-console.log(alirezaObject["birth" + a]); // 1998
+// //Bracket Notation
+// console.log(alirezaObject["firstName"]); // "Alireza"
+// console.log(alirezaObject["birth" + a]); // 1998
 
-// Dot Notation
-console.log(alirezaObject.firstName); // "Alireza"
-console.log(alirezaObject.birthYear); // 1998
+// // Dot Notation
+// console.log(alirezaObject.firstName); // "Alireza"
+// console.log(alirezaObject.birthYear); // 1998
 
-console.log(alirezaObject.getAge());
-//Output: 30
+// console.log(alirezaObject.getAge());
+// //Output: 30
 
-const users = [
-  {
-    firstName: "Alireza",
-    lastName: "Mohammadi",
-    job: "Full-Stack Developer",
-  },
-  {
-    firstName: "Arman",
-    lastName: "Shabani",
-    job: "Video Editor",
-  },
-];
+// const users = [
+//   {
+//     firstName: "Alireza",
+//     lastName: "Mohammadi",
+//     job: "Full-Stack Developer",
+//   },
+//   {
+//     firstName: "Arman",
+//     lastName: "Shabani",
+//     job: "Video Editor",
+//   },
+// ];
+
+//! repeat()
+const mood = "Happy!";
+console.log(mood.repeat(3));
+// output: Happy!Happy!Happy!
+
+//! padEnd()
+const number = "100";
+console.log(number.padEnd(3, "*")); // output: "100"
+console.log(number.padEnd(4, "*")); // output: "100*"
+console.log(number.padEnd(5, "*")); // output: "100**"
+
+const mobileNumber = "09121234567";
+const first6digits = mobileNumber.slice(0, 6);
+console.log(first6digits.padEnd(11, "*"));
+// output: "091212*****"
+
+//! padStart()
+console.log(number.padStart(3, "*")); // output: "100"
+console.log(number.padStart(4, "*")); // output: "*100"
+console.log(number.padStart(5, "*")); // output: "**100"
+
+console.log(last4digits.padStart(16, "*"));
+// output: "************4703"
+
+//! split()
+console.log(wlc.split("#"));
+// output: ['Welcome', 'to', 'Websila']
+
+//! includes()
+console.log(wlc.includes("welcome")); // output: false
+console.log(wlc.includes("Websila")); // output: true
+console.log(wlc.includes("hello")); // output: false
+
+//! replaceAll()
+console.log(wlc.replaceAll("#", "-"));
+// output: "Welcome-to-Websila"
+
+//! replace()
+const txt = "Hello, My name is Alireza!";
+console.log(txt.replace("Hello", "Hi"));
+// output: "Hi, My name is Alireza!"
+
+//! trim()
+console.log(txt.trim());
+// output: "Hello world!"
+
+//! toLowerCase()
+console.log(wlc.toLowerCase());
+// output: welcome to websila!
+
+//! toUpperCase()
+console.log(wlc.toUpperCase());
+// output: WELCOME TO WEBSILA!
+
+//! new String()
+console.log(wlc, typeof wlc);
+//output: String {'Welcome to Websila!'} 'object'
+
+//! slice()
+console.log(wlc.slice(14)); // output: "sila Academy!"
+console.log(wlc.slice(-5)); // output: "demy!"
+console.log(wlc.slice(1, 6)); // output: "elcom"
+
+//! lastIndexOf()
+console.log(wlc.lastIndexOf("!")); // output: 26
+console.log(wlc.lastIndexOf("e")); // output: 23
+console.log(wlc.lastIndexOf("x")); // output: -1
+
+//! indexOf()
+console.log(wlc.indexOf("e")); // output: 1
+console.log(wlc.indexOf("x")); // output: -1
+console.log(wlc.indexOf("m")); // output: 5
+
+//! length
+console.log(wlc.length); // output: 27
+
+//! Strings are also arrays!
+console.log(wlc[0]); // output: "W"
+console.log(wlc[1]); // output: "e"
+console.log(wlc.at(-1)); // output: "!"
+console.log(wlc.at(-2)); // output: "y"
