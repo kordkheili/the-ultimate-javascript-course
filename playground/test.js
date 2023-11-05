@@ -350,11 +350,12 @@ console.log(wlc.replaceAll("#", "-"));
 // output: "Welcome-to-Websila"
 
 //! replace()
-const txt = "Hello, My name is Alireza!";
+//const txt = "Hello, My name is Alireza!";
 console.log(txt.replace("Hello", "Hi"));
 // output: "Hi, My name is Alireza!"
 
 //! trim()
+const txt = "    Hello world!  ";
 console.log(txt.trim());
 // output: "Hello world!"
 
@@ -363,6 +364,7 @@ console.log(wlc.toLowerCase());
 // output: welcome to websila!
 
 //! toUpperCase()
+
 console.log(wlc.toUpperCase());
 // output: WELCOME TO WEBSILA!
 
