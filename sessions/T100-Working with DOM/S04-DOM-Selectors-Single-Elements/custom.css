@@ -1,0 +1,14 @@
+h1 {
+  background-color: yellow;
+  border: 2px dashed #000;
+  padding: 1rem;
+}
+article.style2:nth-child(2) {
+  opacity: 0.1;
+}
+/* #header {
+  display: none;
+} */
+/* article {
+  filter: grayscale(100%) blur(10px);
+} */
