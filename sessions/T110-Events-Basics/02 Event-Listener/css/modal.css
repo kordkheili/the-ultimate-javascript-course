@@ -1,0 +1,140 @@
+/* @font-face {
+    font-family: "Poppins";
+    src: url(../fonts/Poppins-Regular.ttf) format("truetype");
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap");
+
+:root {
+  --trans: all 150ms ease-in;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  /* 62.5% =  10px */
+  scroll-behavior: smooth;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins";
+  line-height: 1.6;
+  font-size: 1.6rem;
+  position: relative;
+  height: 100vh;
+}
+
+.bg-blur {
+  height: 100vh;
+  background-image: url("../../../../sources/images/hidden-beach-in-the-coast.jpg");
+  background-size: cover;
+  z-index: -1;
+  background-position-x: 10%;
+  transition: var(--trans);
+}
+
+.wrapper {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  transition: var(--trans);
+}
+
+h1 {
+  color: aliceblue;
+  text-shadow: 0 0 0.8rem rgb(103, 103, 210);
+
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  cursor: pointer;
+  font-family: "Poppins";
+  font-size: 3rem;
+  padding: 1rem 2rem;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  background-color: rgb(103, 103, 210);
+  color: aliceblue;
+  box-shadow: 0 0 0.8rem rgb(103, 103, 210);
+  transition: var(--trans);
+}
+
+.btn:hover {
+  background-color: aliceblue;
+  color: rgb(103, 103, 210);
+}
+
+.modal {
+  background-color: rgba(240, 248, 255);
+  max-width: 70rem;
+  z-index: 3;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0.8rem #fff;
+  padding: 2rem 4rem;
+  border-radius: 1rem;
+  text-align: justify;
+  visibility: hidden;
+  opacity: 0;
+  transition: var(--trans);
+}
+.svg-wrapper {
+  cursor: pointer;
+}
+.close-icon {
+  stroke: #000000;
+}
+.svg-wrapper:hover .close-icon {
+  cursor: pointer;
+  stroke: #6767d2;
+}
+.blur {
+  filter: blur(0.3rem);
+}
+.slideInDown {
+  visibility: visible;
+  opacity: 1;
+  animation-name: slideInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes slideInDown {
+  0% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+
+  100% {
+    visibility: visible;
+
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+.dig_lase_message {
+  color: #222;
+}
+.dig_popdismiss,
+.dig_lase_snap {
+  display: none;
+}
+.dig_popmessage_contents {
+  background-color: #fff;
+}
