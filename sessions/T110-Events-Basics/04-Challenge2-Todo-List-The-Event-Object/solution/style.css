@@ -149,3 +149,12 @@ body {
     margin-top: -50px;
   }
 }
+
+.btn {
+  height: 100px;
+  line-height: 100px;
+  background-color: lightcoral;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+}
