@@ -32,3 +32,23 @@ p span {
   font-weight: 500;
   vertical-align: middle;
 }
+#area {
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  margin: 20px auto;
+  opacity: 0.7;
+  border-radius: 1rem;
+  border: 5px solid lightcoral;
+}
+#area.active {
+  border: 5px solid lightgreen;
+}
+#stop,
+#start {
+  margin-top: 1rem;
+  padding: 5px 15px;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
