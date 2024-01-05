@@ -42,6 +42,7 @@ logo.addEventListener("click", clickHandler);
 logo.addEventListener("dblclick", dblclickHandler);
 logo.addEventListener("contextmenu", rightClickHandler);
 logo.addEventListener("mousedown", mousedownHandler);
+logo.addEventListener("mouseup", mouseupHandler);
 logo.addEventListener("wheel", wheelHandler);
 logo.addEventListener("mouseenter", mouseenterHandler);
 logo.addEventListener("mousemove", mousemoveHandler);
