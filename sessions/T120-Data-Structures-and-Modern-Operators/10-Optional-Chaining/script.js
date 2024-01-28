@@ -31,6 +31,7 @@ const socialUser = {
   },
 };
 
+//! example 1
 // if (socialUser.profile && socialUser.profile.getFullName) {
 //   const fullName = socialUser.profile.getFullName();
 //   console.log(fullName);
@@ -38,6 +39,7 @@ const socialUser = {
 const fullName = socialUser.profile?.getFullName?.();
 console.log(fullName);
 
+//! example 2
 const movie = {
   title: "Marmoulak",
   rating: 5,
