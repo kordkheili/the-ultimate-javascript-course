@@ -25,8 +25,22 @@ const socialUser = {
         rating: 4.5,
       },
     ],
-    addHobby(interest) {
-      this.hobbies.push(interest);
+    addMovie(movie) {
+      this.favoriteMovies.push(movie);
     },
   },
 };
+
+// if (socialUser.profile && socialUser.profile.getFullName) {
+//   const fullName = socialUser.profile.getFullName();
+//   console.log(fullName);
+// }
+const fullName = socialUser.profile?.getFullName?.();
+console.log(fullName);
+
+const movie = {
+  title: "Marmoulak",
+  rating: 5,
+};
+socialUser.interests?.addMovie?.(movie);
+console.log(socialUser);
