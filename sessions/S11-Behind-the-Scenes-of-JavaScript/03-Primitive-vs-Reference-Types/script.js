@@ -1,18 +1,22 @@
 // ! Primitive Data Types
-const a = "Kordkheili"; // String
-const b = 1001; // Number
-const c = true; // Boolean
-const d = null; // null
-const e = undefined; // undefined
-const f = Symbol("foo"); // Symbol
-const g = BigInt(90071992547409991); // BigInt
+let a = "Kordkheili";
+let a_copy = a;
+a = "Mohammadi Kordkheili";
+// console.log(a);
+// console.log(a_copy);
 
 // ! Reference Data Type (Object)
-const x = {
+let x = {
   firstName: "Alireza",
-  lastName: "Mohammadi Kordkheili",
+  lastName: "Kordkheili",
 };
-const y = [1, 3, 5, 7, 9];
-const z = function () {
-  console.log("Hello World!");
-};
+let x_copy = x;
+x.lastName = "Mohammadi Kordkheili";
+console.log(x);
+console.log(x_copy);
+
+const array1 = [2, 4, 6, 8];
+const array2 = array1;
+array2.push(10);
+console.log(array1);
+console.log(array2);
