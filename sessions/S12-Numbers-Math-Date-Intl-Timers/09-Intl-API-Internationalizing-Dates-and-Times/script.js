@@ -10,5 +10,10 @@ const options = {
   minute: "2-digit",
   second: "numeric",
 };
-const todayIR = new Intl.DateTimeFormat("fa-IR", options).format(date1);
+const todayIR = new Intl.DateTimeFormat("de-CH", options).format(date1);
+const todayVIPFormat = new Intl.DateTimeFormat(
+  navigator.language,
+  options
+).format(date1);
 console.log(todayIR);
+console.log(todayVIPFormat);
