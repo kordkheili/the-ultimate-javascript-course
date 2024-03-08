@@ -1,4 +1,4 @@
-# Challenge #3 (Add Days)
+# Challenge #4 (Date Difference)
 
 ## Task
 
