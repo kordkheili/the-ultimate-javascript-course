@@ -1,27 +1,27 @@
 //! Constants
 console.log("Constants");
-console.log(Math.PI);
-console.log(Math.E);
-console.log(Math.LN2);
+console.log(Math.PI); // 3.141592653589793
+console.log(Math.E); // 2.718281828459045
+console.log(Math.LN2); // 3.141592653589793
 
 //! Mathematical Operations
 console.log("Mathematical Operations");
-console.log(2 ** 8);
-console.log(Math.pow(2, 8));
-console.log(Math.sqrt(121));
-console.log(121 ** (1 / 2));
-console.log(8 ** (1 / 3));
-console.log(Math.abs(-10));
-console.log(Math.abs(8));
-console.log(Math.abs(0));
+console.log(2 ** 8); // 256
+console.log(Math.pow(2, 8)); // 256
+console.log(Math.sqrt(121)); // 11
+console.log(121 ** (1 / 2)); // 11
+console.log(8 ** (1 / 3)); // 2
+console.log(Math.abs(-10)); // 10
+console.log(Math.abs(8)); // 8
+console.log(Math.abs(0)); // 0
 
 //! Trigonometric Functions
 console.log("Trigonometric Functions");
-console.log(Math.sin(Math.PI / 2));
-console.log(Math.sin(Math.PI / 6));
-console.log(Math.sin(Math.PI / 3));
-console.log(Math.cos(Math.PI));
-console.log(Math.tan(Math.PI));
+console.log(Math.sin(Math.PI / 2)); // 1
+console.log(Math.sin(Math.PI / 6)); // 0.49999999999999994
+console.log(Math.sin(Math.PI / 3)); // 0.8660254037844386
+console.log(Math.cos(Math.PI)); // -1
+console.log(Math.tan(Math.PI)); // -1.2246467991473532e-16
 
 //! Additional Methods
 console.log("Additional Methods");
