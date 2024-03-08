@@ -1,7 +1,7 @@
 function randomGenerator(min, max) {
   const random = min + Math.random() * (max - min);
-  const result = Math.floor(random);
+  const result = Math.round(random);
   return result;
 }
-const rand = randomGenerator(100, 1000);
+const rand = randomGenerator(510, 520);
 console.log(rand);
