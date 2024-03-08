@@ -25,12 +25,13 @@ console.log(Math.tan(Math.PI)); // -1.2246467991473532e-16
 
 //! Additional Methods
 console.log("Additional Methods");
-const numbers = [50, 60, 35, 43, 1, 0, -70];
 console.log(Math.min(50, 4, 23, 43, 63, 100)); // 4
 console.log(Math.max(50, 4, 23, 43, 63, 100)); // 100
 console.log(Math.random()); // 0.41962305794938426
-console.log(Math.min(...numbers));
-console.log(Math.max(...numbers));
+
+const numbers = [50, 60, 35, 43, 1, 0, -70];
+console.log(Math.min(...numbers)); // -70
+console.log(Math.max(...numbers)); // 60
 
 //! Rounding Methods
 console.log("Rounding Methods");
