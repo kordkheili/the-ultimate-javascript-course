@@ -3,7 +3,7 @@
   --color-primary: rgba(37, 37, 37, 1);
   --color-secondary: rgba(252, 41, 74, 1);
   --color-shades: rgba(238, 238, 238, 1);
-  --font-size-xl: calc(1.625rem + 4.5vw);
+  --font-size-xl: 8rem;
 }
 
 html {
@@ -45,12 +45,17 @@ body {
   padding: 0.5rem 1rem;
   color: #fff;
   font-size: 1.5rem;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
+  font-weight: bold;
+  margin: 0px 4px;
 }
 .btn:hover {
   cursor: pointer;
   background-color: #fff;
   color: var(--color-primary);
+}
+.btn:hover svg {
+  fill: #000;
 }
 .timer-controlls {
   display: flex;

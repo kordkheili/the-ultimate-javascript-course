@@ -3,7 +3,7 @@
   --color-primary: rgba(37, 37, 37, 1);
   --color-secondary: rgba(252, 41, 74, 1);
   --color-shades: rgba(238, 238, 238, 1);
-  --font-size-xl: calc(1.625rem + 4.5vw);
+  --font-size-xl: 8rem;
 }
 
 html {
