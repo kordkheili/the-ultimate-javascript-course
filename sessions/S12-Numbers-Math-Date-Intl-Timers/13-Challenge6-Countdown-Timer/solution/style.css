@@ -52,6 +52,9 @@ body {
   background-color: #fff;
   color: var(--color-primary);
 }
+.btn:hover svg {
+  fill: #000;
+}
 .timer-controlls {
   display: flex;
 }
