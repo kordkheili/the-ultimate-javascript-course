@@ -1,54 +1,64 @@
-const btnStart = document.querySelector(".btn-start");
-const btnResume = document.querySelector(".btn-resume");
-const btnPause = document.querySelector(".btn-pause");
-const btnReset = document.querySelector(".btn-reset");
-const timerDisplay = document.querySelector(".timer-display");
-const startString = timerDisplay.innerText;
+//! =========== global variables ===========
+const timerDisplayEl = document.querySelector(".timer-display");
+const timerBtnStartEl = document.querySelector(".btn-start");
+const timerBtnPauseEl = document.querySelector(".btn-pause");
+const timerBtnResumeEl = document.querySelector(".btn-resume");
+const timerBtnResetEl = document.querySelector(".btn-reset");
+const startString = timerDisplayEl.innerText;
 const startArray = startString.split(":");
-let seconds = +startArray[0] * 60 + +startArray[1];
-let timerInterval;
+let startSeconds = +startArray[0] * 60 + +startArray[1];
+let timer;
 
+//! =========== functions ===========
 function intervalHandler() {
-  seconds--;
-  const timer_minute = Math.floor(seconds / 60);
-  const timer_second = seconds % 60;
-  const timer_minute_string = String(timer_minute).padStart(2, "0");
-  const timer_second_string = String(timer_second).padStart(2, "0");
-  timerDisplay.innerText = `${timer_minute_string}:${timer_second_string}`;
+  if (startSeconds === 1) timerEnd();
+  startSeconds--;
+  const currentMinute = Math.floor(startSeconds / 60);
+  const currentSecond = startSeconds % 60;
+  const currentMinuteString = String(currentMinute).padStart(2, "0");
+  const currentSecondString = String(currentSecond).padStart(2, "0");
+  const currentTime = `${currentMinuteString}:${currentSecondString}`;
+  timerDisplayEl.innerText = currentTime;
 }
 
 function startHandler() {
-  timerInterval = setInterval(intervalHandler, 1000);
-  btnStart.style.display = "none";
-  btnResume.style.display = "none";
-  btnPause.style.display = "block";
-  btnReset.style.display = "block";
+  timer = setInterval(intervalHandler, 1000);
+  timerBtnStartEl.style.display = "none";
+  timerBtnPauseEl.style.display = "block";
+  timerBtnResumeEl.style.display = "none";
+  timerBtnResetEl.style.display = "block";
 }
 
 function pauseHandler() {
-  clearInterval(timerInterval);
-  btnStart.style.display = "none";
-  btnResume.style.display = "block";
-  btnPause.style.display = "none";
-  btnReset.style.display = "block";
+  clearInterval(timer);
+  timerBtnStartEl.style.display = "none";
+  timerBtnPauseEl.style.display = "none";
+  timerBtnResumeEl.style.display = "block";
+  timerBtnResetEl.style.display = "block";
 }
 
 function resumeHandler() {
-  timerInterval = setInterval(intervalHandler, 1000);
-  btnStart.style.display = "none";
-  btnResume.style.display = "none";
-  btnPause.style.display = "block";
-  btnReset.style.display = "block";
+  timer = setInterval(intervalHandler, 1000);
+  timerBtnStartEl.style.display = "none";
+  timerBtnPauseEl.style.display = "block";
+  timerBtnResumeEl.style.display = "none";
+  timerBtnResetEl.style.display = "block";
 }
 
 function resetHandler() {
-  timerDisplay.innerHTML = `<img src="loading.svg" />`;
-  seconds = +startArray[0] * 60 + +startArray[1];
-  clearInterval(timerInterval);
+  timerDisplayEl.innerHTML = `<img src="loading.svg" />`;
+  startSeconds = +startArray[0] * 60 + +startArray[1];
+  clearInterval(timer);
   startHandler();
 }
 
-btnStart.addEventListener("click", startHandler);
-btnResume.addEventListener("click", resumeHandler);
-btnPause.addEventListener("click", pauseHandler);
-btnReset.addEventListener("click", resetHandler);
+function timerEnd() {
+  clearInterval(timer);
+  timerBtnPauseEl.style.display = "none";
+}
+
+//! =========== events ===========
+timerBtnStartEl.addEventListener("click", startHandler);
+timerBtnPauseEl.addEventListener("click", pauseHandler);
+timerBtnResumeEl.addEventListener("click", resumeHandler);
+timerBtnResetEl.addEventListener("click", resetHandler);
