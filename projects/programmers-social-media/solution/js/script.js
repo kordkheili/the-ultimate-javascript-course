@@ -1,4 +1,4 @@
-//! data
+//! state
 const users = [
   {
     firstName: "علیرضا",
@@ -7,7 +7,7 @@ const users = [
     job: "توسعه دهنده وب",
     following: 272,
     follower: 2000,
-    projects: 89,
+    projects: 9,
     salary: 73000000,
     workHours: 49,
   },
@@ -18,7 +18,7 @@ const users = [
     job: "برنامه‌نویس ارشد بک‌اند",
     following: 272,
     follower: 1200,
-    projects: 6,
+    projects: 60,
     salary: 33000000,
     workHours: 50,
   },
@@ -122,24 +122,64 @@ const users = [
     workHours: 54,
   },
 ];
+let topUsers = {
+  bySalary: -1,
+  byProjects: -1,
+};
+
+//!IIFE
+topUsers = (function () {
+  let countProjects = 0;
+  let countSalary = 0;
+  let topIndexByProjects = -1;
+  let topIndexBySalary = -1;
+  users.forEach((user, index) => {
+    if (user.projects > countProjects) {
+      countProjects = user.projects;
+      topIndexByProjects = index;
+    }
+    if (user.salary > countSalary) {
+      countSalary = user.salary;
+      topIndexBySalary = index;
+    }
+  });
+  return {
+    bySalary: topIndexBySalary,
+    byProjects: topIndexByProjects,
+  };
+})(users);
 
 //! elements
-const userGrid = document.querySelector(".user-list");
+const userGrid = document.querySelector(".user-grid");
 const statisticUsersEl = document.getElementById("statistic-users");
 const statisticSalaryEl = document.getElementById("statistic-salary");
 const statisticProjectsEl = document.getElementById("statistic-projects");
 const statisticWorkHoursEl = document.getElementById("statistic-work-hours");
 
 //! logic
-const usersHTML = users.map((user) => {
+const usersHTML = users.map((user, index) => {
+  const topSalaryLabel =
+    index === topUsers.bySalary
+      ? `<span class="dark:bg-blue-900 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
+          بیشترین حقوق
+        </span>`
+      : "";
+  const topProjectsLabel =
+    index === topUsers.byProjects
+      ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
+          بیشترین تعداد پروژه
+        </span>`
+      : "";
   const template = `
     <div
       class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
     >
       <div class="user-card__inner border rounded-lg overflow-hidden">
         <div
-          class="user-card__head bg-gradient-to-r ${gradientGenerator()} w-full h-20"
-        ></div>
+          class="user-card__head flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r ${gradientGenerator()} w-full h-20"
+        >
+          ${topSalaryLabel}${topProjectsLabel}
+        </div>
         <div
           class="user-card__body flex flex-col items-center p-4 border-t"
         >
@@ -176,7 +216,7 @@ usersHTML.forEach((userHTML) => {
   userGrid.insertAdjacentHTML("beforeend", userHTML);
 });
 statisticUsersEl.innerText = users.length;
-statisticSalaryEl.innerText = calcAverageSalary(users);
+statisticSalaryEl.innerText = calcAverageSalary(users) + " میلیون";
 statisticWorkHoursEl.innerText = calcAverageWorkHours(users) + " ساعت";
 statisticProjectsEl.innerText = `${projectsCounter(users)}+`;
 
@@ -209,15 +249,17 @@ function gradientGenerator() {
   const randomIndex = randomGenerator(0, gradients.length - 1);
   return gradients[randomIndex];
 }
+
 function calcAverageSalary(usersArray) {
   const sum = usersArray.reduce((accumulator, current) => {
     return accumulator + current.salary;
   }, 0);
   const avg = sum / usersArray.length;
-  const roundedAvg = Math.ceil(avg / 10000) * 10000;
+  const roundedAvg = Math.ceil(avg / 100000) / 10;
   const result = Intl.NumberFormat("en-US").format(roundedAvg);
   return result;
 }
+
 function calcAverageWorkHours(usersArray) {
   const sum = usersArray.reduce((accumulator, current) => {
     return accumulator + current.workHours;
@@ -227,6 +269,7 @@ function calcAverageWorkHours(usersArray) {
   const result = Intl.NumberFormat("en-US").format(roundedAvg);
   return result;
 }
+
 function projectsCounter(usersArray) {
   const sum = usersArray.reduce((accumulator, current) => {
     return accumulator + current.projects;
