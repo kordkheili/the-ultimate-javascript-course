@@ -165,8 +165,10 @@
               <span class="flex-grow block border-t border-gray-300"></span>
             </h2>
           </div>
-          <div class="flex justify-between filter-box">
-            <div class="search-box">
+          <div
+            class="flex flex-col sm:flex-row justify-between filter-box mt-4 gap-4"
+          >
+            <div class="search-box order-1 sm:order-0 grow">
               <form>
                 <label
                   for="search"
@@ -202,8 +204,8 @@
                 </div>
               </form>
             </div>
-            <div class="order-by">
-              <form class="max-w-sm mx-auto">
+            <div class="order-by order-0 sm:order-1">
+              <form class="w-full sm:max-w-sm mx-auto">
                 <select
                   id="order-by"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 !pe-8"
