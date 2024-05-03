@@ -1,6 +1,7 @@
 //! state
-const users = [
+let users = [
   {
+    id: 101,
     firstName: "علیرضا",
     lastName: "محمدی",
     image: "images/profile-0.jpg",
@@ -12,6 +13,7 @@ const users = [
     workHours: 49,
   },
   {
+    id: 102,
     firstName: "نوید",
     lastName: "نیکنام",
     image: "images/profile-1.jpg",
@@ -23,6 +25,7 @@ const users = [
     workHours: 50,
   },
   {
+    id: 103,
     firstName: "روژین",
     lastName: "کریمی",
     image: "images/profile-8w.jpg",
@@ -34,6 +37,7 @@ const users = [
     workHours: 42,
   },
   {
+    id: 104,
     firstName: "نازلی",
     lastName: "موسوی",
     image: "images/profile-5w.jpg",
@@ -45,6 +49,7 @@ const users = [
     workHours: 49,
   },
   {
+    id: 105,
     firstName: "هادی",
     lastName: "کریمی",
     image: "images/profile-4.jpg",
@@ -56,6 +61,7 @@ const users = [
     workHours: 49,
   },
   {
+    id: 106,
     firstName: "پوریا",
     lastName: "براتیان",
     image: "images/profile-3.jpg",
@@ -67,6 +73,7 @@ const users = [
     workHours: 56,
   },
   {
+    id: 107,
     firstName: "ایمان",
     lastName: "جلیلی",
     image: "images/profile-6.jpg",
@@ -78,6 +85,7 @@ const users = [
     workHours: 30,
   },
   {
+    id: 108,
     firstName: "پارسا",
     lastName: "سلمانیان",
     image: "images/profile-7.jpg",
@@ -89,6 +97,7 @@ const users = [
     workHours: 55,
   },
   {
+    id: 109,
     firstName: "سهیل",
     lastName: "نعمتی",
     image: "images/profile-2.jpg",
@@ -100,6 +109,7 @@ const users = [
     workHours: 44,
   },
   {
+    id: 110,
     firstName: "مریم",
     lastName: "علوی",
     image: "images/profile-9w.jpg",
@@ -111,6 +121,7 @@ const users = [
     workHours: 46,
   },
   {
+    id: 111,
     firstName: "علی",
     lastName: "سلطانیان",
     image: "images/profile-10.jpg",
@@ -131,21 +142,21 @@ let topUsers = {
 topUsers = (function () {
   let countProjects = 0;
   let countSalary = 0;
-  let topIndexByProjects = -1;
-  let topIndexBySalary = -1;
-  users.forEach((user, index) => {
+  let topByProjects = -1;
+  let topBySalary = -1;
+  users.forEach((user) => {
     if (user.projects > countProjects) {
       countProjects = user.projects;
-      topIndexByProjects = index;
+      topByProjects = user.id;
     }
     if (user.salary > countSalary) {
       countSalary = user.salary;
-      topIndexBySalary = index;
+      topBySalary = user.id;
     }
   });
   return {
-    bySalary: topIndexBySalary,
-    byProjects: topIndexByProjects,
+    bySalary: topBySalary,
+    byProjects: topByProjects,
   };
 })(users);
 
@@ -155,70 +166,120 @@ const statisticUsersEl = document.getElementById("statistic-users");
 const statisticSalaryEl = document.getElementById("statistic-salary");
 const statisticProjectsEl = document.getElementById("statistic-projects");
 const statisticWorkHoursEl = document.getElementById("statistic-work-hours");
+const searchEl = document.getElementById("search");
+const orderByEl = document.getElementById("order-by");
 
-//! logic
-const usersHTML = users.map((user, index) => {
-  const topSalaryLabel =
-    index === topUsers.bySalary
-      ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
-          بیشترین حقوق
-        </span>`
-      : "";
-  const topProjectsLabel =
-    index === topUsers.byProjects
-      ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
-          بیشترین تعداد پروژه
-        </span>`
-      : "";
-  const template = `
-    <div
-      class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
-    >
-      <div class="user-card__inner border rounded-lg overflow-hidden">
-        <div
-          class="user-card__head flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r ${gradientGenerator()} w-full h-20"
-        >
-          ${topSalaryLabel}${topProjectsLabel}
-        </div>
-        <div
-          class="user-card__body flex flex-col items-center p-4 border-t"
-        >
-          <div
-            class="user-card__image rounded-full overflow-hidden w-20 -mt-14 border-2 border-white"
-          >
-            <img class="w-100" src="${user.image}" />
-          </div>
-          <div class="user-card__user font-bold mt-2">
-            ${user.firstName} ${user.lastName}
-          </div>
-          <div class="user-card__job"></div>
-        </div>
-        <div class="user-card__footer flex py-2 border-t">
-          <div class="user-card__projects basis-1/3 border-l">
-            <div>${user.following}</div>
-            <div>Following</div>
-          </div>
-          <div class="user-card__follower basis-1/3 border-l">
-            <div>${user.follower}</div>
-            <div>Follower</div>
-          </div>
-          <div class="user-card__following basis-1/3">
-            <div>${user.projects}</div>
-            <div>Projects</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  return template;
-});
-usersHTML.forEach((userHTML) => {
-  userGrid.insertAdjacentHTML("beforeend", userHTML);
-});
+//! statistics
 statisticUsersEl.innerText = users.length;
 statisticSalaryEl.innerText = calcAverageSalary(users) + " میلیون";
 statisticWorkHoursEl.innerText = calcAverageWorkHours(users) + " ساعت";
 statisticProjectsEl.innerText = `${projectsCounter(users)}+`;
+
+//! user grid
+function generateUsers(users) {
+  const usersHTML = users.map((user) => {
+    const topSalaryLabel =
+      user.id === topUsers.bySalary
+        ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
+            بیشترین حقوق
+          </span>`
+        : "";
+    const topProjectsLabel =
+      user.id === topUsers.byProjects
+        ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
+            بیشترین تعداد پروژه
+          </span>`
+        : "";
+    const template = `
+      <div
+        class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
+      >
+        <div class="user-card__inner border rounded-lg overflow-hidden">
+          <div
+            class="user-card__head flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r ${gradientGenerator()} w-full h-20"
+          >
+            ${topSalaryLabel}${topProjectsLabel}
+          </div>
+          <div
+            class="user-card__body flex flex-col items-center p-4 border-t"
+          >
+            <div
+              class="user-card__image rounded-full overflow-hidden w-20 -mt-14 border-2 border-white"
+            >
+              <img class="w-100" src="${user.image}" />
+            </div>
+            <div class="user-card__user font-bold mt-2">
+              ${user.firstName} ${user.lastName}
+            </div>
+            <div class="user-card__job"></div>
+          </div>
+          <div class="user-card__footer flex py-2 border-t">
+            <div class="user-card__projects basis-1/3 border-l">
+              <div>${user.following}</div>
+              <div>Following</div>
+            </div>
+            <div class="user-card__follower basis-1/3 border-l">
+              <div>${user.follower}</div>
+              <div>Follower</div>
+            </div>
+            <div class="user-card__following basis-1/3">
+              <div>${user.projects}</div>
+              <div>Projects</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    return template;
+  });
+  userGrid.innerHTML = "";
+  usersHTML.forEach((userHTML) => {
+    userGrid.insertAdjacentHTML("beforeend", userHTML);
+  });
+}
+generateUsers(users);
+
+//! search
+function filterUsers(query) {
+  return users.filter(function (user) {
+    const fullName = user.firstName + user.lastName;
+    return fullName.search(query) !== -1;
+  });
+}
+
+//! order by
+orderByEl.addEventListener("change", function (e) {
+  const order = e.target.value;
+  switch (order) {
+    case "id":
+      users = users.sort(function (a, b) {
+        return a.id - b.id;
+      });
+      break;
+    case "project":
+      users = users.sort(function (a, b) {
+        return b.projects - a.projects;
+      });
+      break;
+    case "follower":
+      users = users.sort(function (a, b) {
+        return b.follower - a.follower;
+      });
+      break;
+    case "following":
+      users = users.sort(function (a, b) {
+        return b.following - a.following;
+      });
+      break;
+  }
+  generateUsers(users);
+});
+
+searchEl.addEventListener("keyup", function (e) {
+  const query = e.target.value;
+  const users = filterUsers(query);
+  generateUsers(users);
+});
 
 //! helper functions 👇🏻
 function randomGenerator(min, max) {
