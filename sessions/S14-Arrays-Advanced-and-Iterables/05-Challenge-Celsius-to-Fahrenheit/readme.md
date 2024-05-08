@@ -4,7 +4,7 @@ You have an array of Celsius temperatures representing the daily temperatures fo
 
 1. Define a function `celsiusToFahrenheit()` that takes an array of Celsius temperatures as input.
 2. Inside the function, use the `map()` method to iterate over each temperature in the array.
-3. For each Celsius temperature, convert it to Fahrenheit using the formula `(C × 9/5) + 32`.
+3. For each Celsius temperature, convert it to Fahrenheit using the formula `(C × 9/5) + 32`
 4. Return a new array containing the temperatures converted to Fahrenheit.
 5. Test your function with sample input arrays and verify that it produces the correct output.
 
