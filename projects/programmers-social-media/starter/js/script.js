@@ -9,7 +9,7 @@ let users = [
     following: 272,
     follower: 2000,
     projects: 9,
-    salary: 73000000,
+    salary: 1300000,
     workHours: 49,
   },
   {
