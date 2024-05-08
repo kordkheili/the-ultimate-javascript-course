@@ -15,5 +15,3 @@ const celsiusTemperatures = [0, 10, 20, 30, 40];
 const temperatureFahrenheit = celsiusToFahrenheit()(celsiusTemperatures);
 console.log(temperatureFahrenheit); // Expected Output: [32, 50, 68, 86, 104]
 ```
-
-Your challenge is to implement the `celsiusToFahrenheit()` function as described above. This exercise will help learners understand how to use the `map()` method to transform elements of an array in JavaScript.
