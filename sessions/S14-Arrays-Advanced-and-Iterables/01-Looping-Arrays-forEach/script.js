@@ -27,3 +27,9 @@ cities.forEach(function (city, index, array) {
   const result = `${city} Index is => ${index}`;
   console.log(result);
 });
+
+//! forEach() -> arrow callback
+const fruits = ["apple", "banana", "orange"];
+fruits.forEach((fruit) => {
+  console.log(fruit);
+});
