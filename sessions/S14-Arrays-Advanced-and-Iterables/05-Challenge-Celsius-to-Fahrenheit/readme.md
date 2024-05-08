@@ -12,6 +12,6 @@ You have an array of Celsius temperatures representing the daily temperatures fo
 
 ```js
 const celsiusTemperatures = [0, 10, 20, 30, 40];
-const temperatureFahrenheit = celsiusToFahrenheit()(celsiusTemperatures);
+const temperatureFahrenheit = celsiusToFahrenheit(celsiusTemperatures);
 console.log(temperatureFahrenheit); // Expected Output: [32, 50, 68, 86, 104]
 ```
