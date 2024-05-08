@@ -11,7 +11,7 @@ You have an array of Celsius temperatures representing the daily temperatures fo
 ## Example:
 
 ```js
-const celsiusTemperatures = [0, 10, 20, 30, 40];
-const temperatureFahrenheit = celsiusToFahrenheit(celsiusTemperatures);
+const temperatureCelsius = [0, 10, 20, 30, 40];
+const temperatureFahrenheit = celsiusToFahrenheit(temperatureCelsius);
 console.log(temperatureFahrenheit); // Expected Output: [32, 50, 68, 86, 104]
 ```
