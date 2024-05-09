@@ -1,4 +1,3 @@
-// Sample data
 const students = [
   { name: "Alice", grade: 80 },
   { name: "Bob", grade: 65 },
