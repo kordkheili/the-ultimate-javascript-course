@@ -1,3 +1,8 @@
+function filterPassedStudents(students, minPassingGrade) {
+  /* START CODE HERE */
+  /* END CODE HERE */
+}
+
 const students = [
   { name: "Alice", grade: 80 },
   { name: "Bob", grade: 65 },
@@ -6,11 +11,6 @@ const students = [
 ];
 
 const passingGrade = 70;
-
-function filterPassedStudents(students, minPassingGrade) {
-  /* START CODE HERE */
-  /* END CODE HERE */
-}
 
 // Test the function
 console.log(filterPassedStudents(students, passingGrade));
