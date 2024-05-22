@@ -12,6 +12,50 @@
     <link rel="stylesheet" href="css/global.css" />
   </head>
   <body>
+    <div
+      id="backdrop"
+      class="fixed w-full h-screen opacity-75 bg-black z-10 hidden"
+    ></div>
+    <div
+      id="modal"
+      class="fixed w-10/12 sm:w-8/12 md:w-6/12 xl:w-4/12 bg-white z-20 right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 rounded-lg hidden"
+    >
+      <div
+        id="close-btn"
+        class="absolute flex justify-center items-center -top-4 -right-4 rounded-full w-10 h-10 bg-red-500 hover:bg-red-600 cursor-pointer"
+      >
+        <img src="images/close.svg" class="w-1/2" />
+      </div>
+      <div class="user-card w-full text-center p-2">
+        <div class="user-card__inner rounded-lg overflow-hidden">
+          <div class="user-card__body flex flex-col items-center p-4">
+            <div
+              class="user-card__image rounded-full overflow-hidden w-20 border-2 border-white"
+            >
+              <img class="w-100" src="images/profile-0.jpg" />
+            </div>
+            <div class="user-card__user font-bold mt-2">
+              علیرضا محمدی کردخیلی
+            </div>
+            <div class="user-card__job"></div>
+          </div>
+          <div
+            class="user-card__footer flex flex-col sm:flex-row py-2 border-t"
+          >
+            <div
+              class="basis-1/2 sm:border-l border-b sm:border-b-0 pb-2 sm:pb-0"
+            >
+              <div class="modal__salary">12000000</div>
+              <div>حقوق ماهانه (تومان)</div>
+            </div>
+            <div class="basis-1/2 pt-2 sm:pt-0">
+              <div class="modal__workHours">47</div>
+              <div>ساعت کاری در هفته</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <header class="mb-8">
       <nav
         class="border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-700"

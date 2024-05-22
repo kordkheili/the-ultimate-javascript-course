@@ -186,6 +186,10 @@ const statisticProjectsEl = document.getElementById("statistic-projects");
 const statisticWorkHoursEl = document.getElementById("statistic-work-hours");
 const searchEl = document.getElementById("search");
 const orderByEl = document.getElementById("order-by");
+const backdropEl = document.getElementById("backdrop");
+const modalEl = document.getElementById("modal");
+const closeBtnEl = document.getElementById("close-btn");
+const userCardsEls = document.body.querySelectorAll(".user-card__inner");
 
 //! statistics
 statisticUsersEl.innerText = users.length;
@@ -210,9 +214,10 @@ function generateUsers(users) {
         : "";
     const template = `
       <div
-        class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
+        data-user-id="${user.id}"
+        class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2 "
       >
-        <div class="user-card__inner border rounded-lg overflow-hidden">
+        <div class="user-card__inner border rounded-lg overflow-hidden cursor-pointer transition-all duration-500 hover:opacity-80">
           <div
             class="user-card__head flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r ${gradientGenerator(
               gradients
@@ -301,6 +306,42 @@ searchEl.addEventListener("keyup", function (e) {
   generateUsers(users);
 });
 
+//! modal
+document.body.addEventListener("click", function (e) {
+  if (
+    [...e.target.classList].includes("user-card__inner") ||
+    e.target.closest(".user-card__inner")
+  ) {
+    const userId = e.target.closest(".user-card").dataset.userId;
+    updateModal(userId);
+    showModal();
+  }
+});
+
+closeBtnEl.addEventListener("click", hideModal);
+backdropEl.addEventListener("click", hideModal);
+
+function showModal() {
+  backdropEl.style.display = "block";
+  modalEl.style.display = "block";
+}
+function hideModal() {
+  backdropEl.style.display = "none";
+  modalEl.style.display = "none";
+}
+function updateModal(id) {
+  const user = getUserById(id);
+  console.log(user);
+  modalEl.querySelector(
+    ".user-card__user"
+  ).innerText = `${user.firstName} ${user.lastName}`;
+  modalEl.querySelector(".modal__salary").innerText = user.salary;
+  modalEl.querySelector(".modal__workHours").innerText = user.workHours;
+  modalEl
+    .querySelector(".user-card__image img")
+    .setAttribute("src", user.image);
+}
+
 //! helper functions 👇🏻
 function randomGenerator(min, max) {
   const random = min + Math.random() * (max - min);
@@ -338,4 +379,8 @@ function projectsCounter(usersArray) {
     return accumulator + current.projects;
   }, 0);
   return sum;
+}
+
+function getUserById(id) {
+  return users.filter((user) => user.id == id)[0];
 }
