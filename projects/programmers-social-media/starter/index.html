@@ -26,11 +26,14 @@
       >
         <img src="images/close.svg" class="w-1/2" />
       </div>
-      <div class="user-card w-full text-center p-2">
+      <div class="user-card w-full text-center">
         <div class="user-card__inner rounded-lg overflow-hidden">
+          <div
+            class="user-card__head from-gray-300 to-gray-200 flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r ${gradientGenerator( gradients )} w-full h-20"
+          ></div>
           <div class="user-card__body flex flex-col items-center p-4">
             <div
-              class="user-card__image rounded-full overflow-hidden w-20 border-2 border-white"
+              class="user-card__image -mt-14 rounded-full overflow-hidden w-20 border-2 border-white"
             >
               <img class="w-100" src="images/profile-0.jpg" />
             </div>

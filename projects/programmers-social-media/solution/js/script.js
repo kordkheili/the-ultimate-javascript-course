@@ -9,7 +9,7 @@ let users = [
     following: 272,
     follower: 2000,
     projects: 9,
-    salary: 65000000,
+    salary: 120000000,
     workHours: 49,
   },
   {
@@ -335,7 +335,9 @@ function updateModal(id) {
   modalEl.querySelector(
     ".user-card__user"
   ).innerText = `${user.firstName} ${user.lastName}`;
-  modalEl.querySelector(".modal__salary").innerText = user.salary;
+  modalEl.querySelector(".modal__salary").innerText = Intl.NumberFormat(
+    "en-US"
+  ).format(user.salary);
   modalEl.querySelector(".modal__workHours").innerText = user.workHours;
   modalEl
     .querySelector(".user-card__image img")
