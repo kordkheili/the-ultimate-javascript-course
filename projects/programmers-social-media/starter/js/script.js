@@ -9,7 +9,7 @@ let users = [
     following: 272,
     follower: 2000,
     projects: 9,
-    salary: 1300000,
+    salary: 65000000,
     workHours: 49,
   },
   {
@@ -21,7 +21,7 @@ let users = [
     following: 272,
     follower: 1200,
     projects: 60,
-    salary: 33000000,
+    salary: 170000000,
     workHours: 50,
   },
   {
@@ -33,7 +33,7 @@ let users = [
     following: 50,
     follower: 350,
     projects: 55,
-    salary: 54000000,
+    salary: 220000000,
     workHours: 42,
   },
   {
@@ -45,7 +45,7 @@ let users = [
     following: 1002,
     follower: 20,
     projects: 9,
-    salary: 37000000,
+    salary: 120000000,
     workHours: 49,
   },
   {
@@ -57,7 +57,7 @@ let users = [
     following: 2720,
     follower: 7050,
     projects: 0,
-    salary: 46000000,
+    salary: 185000000,
     workHours: 49,
   },
   {
@@ -69,7 +69,7 @@ let users = [
     following: 9872,
     follower: 101,
     projects: 1,
-    salary: 52000000,
+    salary: 280000000,
     workHours: 56,
   },
   {
@@ -81,7 +81,7 @@ let users = [
     following: 65,
     follower: 2000,
     projects: 89,
-    salary: 31000000,
+    salary: 155000000,
     workHours: 30,
   },
   {
@@ -93,7 +93,7 @@ let users = [
     following: 21,
     follower: 2000,
     projects: 20,
-    salary: 8100000,
+    salary: 81000000,
     workHours: 55,
   },
   {
@@ -105,7 +105,7 @@ let users = [
     following: 50,
     follower: 2000,
     projects: 89,
-    salary: 36000000,
+    salary: 90000000,
     workHours: 44,
   },
   {
@@ -117,7 +117,7 @@ let users = [
     following: 272,
     follower: 2000,
     projects: 50,
-    salary: 45000000,
+    salary: 450000000,
     workHours: 46,
   },
   {
@@ -129,7 +129,7 @@ let users = [
     following: 272,
     follower: 2000,
     projects: 32,
-    salary: 34000000,
+    salary: 340000000,
     workHours: 54,
   },
 ];
