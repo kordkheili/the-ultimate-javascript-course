@@ -1,0 +1,17 @@
+@font-face {
+  font-family: Yekan Bakh FaNum;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/YekanBakhFaNum-Regular.woff") format("woff"),
+    url("../fonts/YekanBakhFaNum-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: Yekan Bakh FaNum;
+  font-style: normal;
+  font-weight: bold;
+  src: url("../fonts/YekanBakhFaNum-Bold.woff") format("woff"),
+    url("../fonts/YekanBakhFaNum-Bold.woff2") format("woff2");
+}
+body {
+  font-family: Yekan Bakh FaNum;
+}
