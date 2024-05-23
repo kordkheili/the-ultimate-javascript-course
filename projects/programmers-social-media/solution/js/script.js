@@ -155,3 +155,59 @@ let gradients = [
   "from-fuchsia-500 to-pink-500",
   "from-pink-500 to-rose-500",
 ];
+
+//! ELEMENTS
+const userGridEl = document.querySelector(".user-grid");
+
+//! USER GRID
+const usersHTML = users.forEach(function (user) {
+  const userHTML = `
+      <div
+        class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
+      >
+        <div class="user-card__inner border rounded-lg overflow-hidden">
+          <div
+            class="user-card__head from-emerald-500 to-teal-500 flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r w-full h-20"
+          >
+            <span
+              class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
+            >
+              بیشترین حقوق </span
+            ><span
+              class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
+            >
+              بیشترین تعداد پروژه
+            </span>
+          </div>
+          <div
+            class="user-card__body flex flex-col items-center p-4 border-t"
+          >
+            <div
+              class="user-card__image rounded-full overflow-hidden w-20 -mt-14 border-2 border-white"
+            >
+              <img class="w-100" src="${user.image}" />
+            </div>
+            <div class="user-card__user font-bold mt-2">
+              ${user.firstName} ${user.lastName}
+            </div>
+            <div class="user-card__job"></div>
+          </div>
+          <div class="user-card__footer flex py-2 border-t">
+            <div class="user-card__projects basis-1/3 border-l">
+              <div>${user.following}</div>
+              <div>Following</div>
+            </div>
+            <div class="user-card__follower basis-1/3 border-l">
+              <div>${user.follower}</div>
+              <div>Follower</div>
+            </div>
+            <div class="user-card__following basis-1/3">
+              <div>${user.projects}</div>
+              <div>Projects</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  userGridEl.insertAdjacentHTML("beforeend", userHTML);
+});
