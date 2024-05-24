@@ -138,22 +138,22 @@ let topUsers = {
   byProjects: -1,
 };
 let gradients = [
-  "from-red-500 to-orange-500",
-  "from-orange-500 to-amber-500",
-  "from-amber-500 to-yellow-500",
-  "from-yellow-500 to-lime-500",
-  "from-lime-500 to-green-500",
-  "from-green-500 to-emerald-500",
+  // "from-red-500 to-orange-500",
+  // "from-orange-500 to-amber-500",
+  // "from-amber-500 to-yellow-500",
+  // "from-yellow-500 to-lime-500",
+  // "from-lime-500 to-green-500",
+  // "from-green-500 to-emerald-500",
   "from-emerald-500 to-teal-500",
   "from-teal-500 to-cyan-500",
   "from-cyan-500 to-sky-500",
-  "from-sky-500 to-blue-500",
-  "from-blue-500 to-indigo-500",
-  "from-indigo-500 to-violet-500",
-  "from-violet-500 to-purple-500",
-  "from-purple-500 to-fuchsia-500",
-  "from-fuchsia-500 to-pink-500",
-  "from-pink-500 to-rose-500",
+  // "from-sky-500 to-blue-500",
+  // "from-blue-500 to-indigo-500",
+  // "from-indigo-500 to-violet-500",
+  // "from-violet-500 to-purple-500",
+  // "from-purple-500 to-fuchsia-500",
+  // "from-fuchsia-500 to-pink-500",
+  // "from-pink-500 to-rose-500",
 ];
 let statistics = {
   usersCount: seperator(users.length),
@@ -204,7 +204,9 @@ function generateUsers(userArray) {
         >
           <div class="user-card__inner border rounded-lg overflow-hidden cursor-pointer transition-all duration-500 hover:opacity-80">
             <div
-              class="user-card__head from-emerald-500 to-teal-500 flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r w-full h-20"
+              class="user-card__head ${
+                gradients[randomGenerator(0, gradients.length - 1)]
+              } flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r w-full h-20"
             >
               ${topSalaryLabel}${topProjectLabel}
               
@@ -352,4 +354,9 @@ function getUserById(userId) {
 //! HELPER FUNCTIONS (UTIL)
 function seperator(x) {
   return Intl.NumberFormat("en-US").format(x);
+}
+function randomGenerator(min, max) {
+  const random = min + Math.random() * (max - min);
+  const result = Math.round(random);
+  return result;
 }
