@@ -355,6 +355,7 @@ function getUserById(userId) {
 function seperator(x) {
   return Intl.NumberFormat("en-US").format(x);
 }
+
 function randomGenerator(min, max) {
   const random = min + Math.random() * (max - min);
   const result = Math.round(random);
