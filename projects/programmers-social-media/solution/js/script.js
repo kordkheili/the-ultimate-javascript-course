@@ -156,7 +156,7 @@ let gradients = [
   "from-pink-500 to-rose-500",
 ];
 let statistics = {
-  usersCount: Intl.NumberFormat("en-US").format(users.length),
+  usersCount: seperator(users.length),
   projectsCount: null,
   averageSalary: null,
   averageWorkHours: null,
@@ -193,7 +193,7 @@ function generateUsers(userArray) {
         <div
           class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
         >
-          <div class="user-card__inner border rounded-lg overflow-hidden">
+          <div class="user-card__inner border rounded-lg overflow-hidden cursor-pointer transition-all duration-500 hover:opacity-80">
             <div
               class="user-card__head from-emerald-500 to-teal-500 flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r w-full h-20"
             >
@@ -245,7 +245,7 @@ function customOrder(field) {
   return usersCopy.sort((a, b) => b[field] - a[field]);
 }
 orderByEl.addEventListener("change", function (e) {
-  const field = e.target.value; // "projects" , "follower" , "following" , "id"
+  const field = e.target.value;
   users = customOrder(field);
   generateUsers(users);
 });
@@ -277,22 +277,17 @@ function setStatistics() {
     sum_salary += user.salary;
     sum_workHours += user.workHours;
   });
-  statistics.projectsCount = Intl.NumberFormat("en-US").format(sum_projects);
+  statistics.projectsCount = seperator(sum_projects);
 
   //? averageSalary
-  const averageSalary = sum_salary / statistics.usersCount;
-  const averageSalaryRounded = Math.round(averageSalary / 1000000);
-  const averageSalaryFormatted =
-    Intl.NumberFormat("en-US").format(averageSalaryRounded);
-  statistics.averageSalary = averageSalaryFormatted;
+  const avgSalary = sum_salary / statistics.usersCount;
+  const avgSalaryRounded = Math.round(avgSalary / 1000000);
+  statistics.averageSalary = seperator(avgSalaryRounded);
 
   //? averageWorkHours
-  const averageWorkHours = sum_workHours / statistics.usersCount;
-  const averageWorkHoursRounded = Math.round(averageWorkHours * 10) / 10;
-  const averageWorkHoursFormatted = Intl.NumberFormat("en-US").format(
-    averageWorkHoursRounded
-  );
-  statistics.averageWorkHours = averageWorkHoursFormatted;
+  const avgWorkHours = sum_workHours / statistics.usersCount;
+  const avgWorkHoursRounded = Math.round(avgWorkHours * 10) / 10;
+  statistics.averageWorkHours = seperator(avgWorkHoursRounded);
 }
 setStatistics();
 
@@ -300,3 +295,10 @@ statisticUserEl.innerText = statistics.usersCount;
 statisticProjectEl.innerText = "+" + statistics.projectsCount;
 statisticSalaryEl.innerText = statistics.averageSalary + " میلیون";
 statisticWorkHoursEl.innerText = statistics.averageWorkHours + " ساعت";
+
+//! MODAL
+
+//! HELPER FUNCTIONS (UTIL)
+function seperator(x) {
+  return Intl.NumberFormat("en-US").format(x);
+}
