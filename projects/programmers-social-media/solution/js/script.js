@@ -170,6 +170,11 @@ const statisticUserEl = document.getElementById("statistic-users");
 const statisticProjectEl = document.getElementById("statistic-projects");
 const statisticSalaryEl = document.getElementById("statistic-salary");
 const statisticWorkHoursEl = document.getElementById("statistic-work-hours");
+const closeBtnEl = document.getElementById("close-btn");
+const backdropEl = document.getElementById("backdrop");
+const modalEl = document.getElementById("modal");
+const userCardsEls = document.querySelectorAll(".user-card");
+console.log(userCardsEls);
 
 //! USER GRID
 function generateUsers(userArray) {
@@ -297,6 +302,10 @@ statisticSalaryEl.innerText = statistics.averageSalary + " میلیون";
 statisticWorkHoursEl.innerText = statistics.averageWorkHours + " ساعت";
 
 //! MODAL
+closeBtnEl.addEventListener("click", function () {
+  backdropEl.classList.add("hidden");
+  modalEl.classList.add("hidden");
+});
 
 //! HELPER FUNCTIONS (UTIL)
 function seperator(x) {
