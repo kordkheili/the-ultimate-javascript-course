@@ -174,6 +174,7 @@ const closeBtnEl = document.getElementById("close-btn");
 const backdropEl = document.getElementById("backdrop");
 const modalEl = document.getElementById("modal");
 const modalFullnameEl = document.querySelector("#modal .user-card__user");
+const modalJobEl = document.querySelector("#modal .user-card__job");
 const modalSalaryEl = document.querySelector("#modal .modal__salary");
 const modalWorkHoursEl = document.querySelector("#modal .modal__workHours");
 const modalImageEl = document.querySelector("#modal .user-card__image img");
@@ -219,7 +220,9 @@ function generateUsers(userArray) {
               <div class="user-card__user font-bold mt-2">
                 ${user.firstName} ${user.lastName}
               </div>
-              <div class="user-card__job text-xs mt-1">${user.job}</div>
+              <div class="user-card__job text-xs mt-1">
+                ${user.job}
+              </div>
             </div>
             <div class="user-card__footer flex py-2 border-t">
               <div class="user-card__projects basis-1/3 border-l">
@@ -263,7 +266,7 @@ orderByEl.addEventListener("change", function (e) {
 function search(query) {
   return users.filter(function (user) {
     const fullName = `${user.firstName} ${user.lastName}`;
-    return fullName.includes(query);
+    return fullName.includes(query) || user.job.includes(query);
   });
 }
 searchInputEl.addEventListener("keyup", function (e) {
@@ -322,6 +325,7 @@ modalHandler();
 
 function updateModal(userObj) {
   modalFullnameEl.innerText = `${userObj.firstName} ${userObj.lastName}`;
+  modalJobEl.innerText = userObj.job;
   modalSalaryEl.innerText = seperator(userObj.salary);
   modalWorkHoursEl.innerText = userObj.workHours;
   modalImageEl.setAttribute("src", userObj.image);
