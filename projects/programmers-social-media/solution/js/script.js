@@ -160,7 +160,29 @@ let gradients = [
 const userGridEl = document.querySelector(".user-grid");
 
 //! USER GRID
-const usersHTML = users.forEach(function (user) {
+function customOrder(field) {
+  const usersCopy = [...users];
+  return usersCopy.sort((a, b) => b[field] - a[field]);
+}
+
+topUsers.bySalary = customOrder("salary")[0].id;
+topUsers.byProjects = customOrder("projects")[0].id;
+
+users.forEach(function (user) {
+  const topSalaryLabel =
+    user.id === topUsers.bySalary
+      ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
+           بیشترین حقوق 
+         </span>`
+      : "";
+
+  const topProjectLabel =
+    user.id === topUsers.byProjects
+      ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
+           بیشترین تعداد پروژه
+         </span>`
+      : "";
+
   const userHTML = `
       <div
         class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
@@ -169,15 +191,8 @@ const usersHTML = users.forEach(function (user) {
           <div
             class="user-card__head from-emerald-500 to-teal-500 flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r w-full h-20"
           >
-            <span
-              class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
-            >
-              بیشترین حقوق </span
-            ><span
-              class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
-            >
-              بیشترین تعداد پروژه
-            </span>
+            ${topSalaryLabel}${topProjectLabel}
+            
           </div>
           <div
             class="user-card__body flex flex-col items-center p-4 border-t"
