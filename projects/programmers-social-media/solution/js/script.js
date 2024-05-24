@@ -21,7 +21,7 @@ let users = [
     following: 272,
     follower: 1200,
     projects: 60,
-    salary: 170000009,
+    salary: 170000000,
     workHours: 50,
   },
   {
@@ -173,8 +173,10 @@ const statisticWorkHoursEl = document.getElementById("statistic-work-hours");
 const closeBtnEl = document.getElementById("close-btn");
 const backdropEl = document.getElementById("backdrop");
 const modalEl = document.getElementById("modal");
-const userCardsEls = document.querySelectorAll(".user-card");
-console.log(userCardsEls);
+const modalFullnameEl = document.querySelector("#modal .user-card__user");
+const modalSalaryEl = document.querySelector("#modal .modal__salary");
+const modalWorkHoursEl = document.querySelector("#modal .modal__workHours");
+const modalImageEl = document.querySelector("#modal .user-card__image img");
 
 //! USER GRID
 function generateUsers(userArray) {
@@ -196,6 +198,7 @@ function generateUsers(userArray) {
 
     const userHTML = `
         <div
+          data-user-id="${user.id}"
           class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
         >
           <div class="user-card__inner border rounded-lg overflow-hidden cursor-pointer transition-all duration-500 hover:opacity-80">
@@ -216,19 +219,19 @@ function generateUsers(userArray) {
               <div class="user-card__user font-bold mt-2">
                 ${user.firstName} ${user.lastName}
               </div>
-              <div class="user-card__job"></div>
+              <div class="user-card__job text-xs mt-1">${user.job}</div>
             </div>
             <div class="user-card__footer flex py-2 border-t">
               <div class="user-card__projects basis-1/3 border-l">
-                <div>${user.following}</div>
+                <div>${seperator(user.following)}</div>
                 <div>Following</div>
               </div>
               <div class="user-card__follower basis-1/3 border-l">
-                <div>${user.follower}</div>
+                <div>${seperator(user.follower)}</div>
                 <div>Follower</div>
               </div>
               <div class="user-card__following basis-1/3">
-                <div>${user.projects}</div>
+                <div>${seperator(user.projects)}</div>
                 <div>Projects</div>
               </div>
             </div>
@@ -253,6 +256,7 @@ orderByEl.addEventListener("change", function (e) {
   const field = e.target.value;
   users = customOrder(field);
   generateUsers(users);
+  modalHandler();
 });
 
 //! LIVE SEARCH
@@ -263,16 +267,17 @@ function search(query) {
   });
 }
 searchInputEl.addEventListener("keyup", function (e) {
-  search(e.target.value);
+  const searchResultUsers = search(e.target.value);
   generateUsers(searchResultUsers);
+  modalHandler();
 });
 searchInputEl.addEventListener("search", function (e) {
-  search(e.target.value);
+  const searchResultUsers = search(e.target.value);
   generateUsers(searchResultUsers);
+  modalHandler();
 });
 
 //! STATISTICS
-
 function setStatistics() {
   let sum_projects = 0;
   let sum_salary = 0;
@@ -302,10 +307,43 @@ statisticSalaryEl.innerText = statistics.averageSalary + " میلیون";
 statisticWorkHoursEl.innerText = statistics.averageWorkHours + " ساعت";
 
 //! MODAL
-closeBtnEl.addEventListener("click", function () {
+function modalHandler() {
+  const userCardsEls = document.querySelectorAll(".user-card");
+  userCardsEls.forEach((userCardEl) => {
+    userCardEl.addEventListener("click", function () {
+      const userId = +this.getAttribute("data-user-id");
+      const user = getUserById(userId);
+      updateModal(user);
+      showModal();
+    });
+  });
+}
+modalHandler();
+
+function updateModal(userObj) {
+  modalFullnameEl.innerText = `${userObj.firstName} ${userObj.lastName}`;
+  modalSalaryEl.innerText = seperator(userObj.salary);
+  modalWorkHoursEl.innerText = userObj.workHours;
+  modalImageEl.setAttribute("src", userObj.image);
+}
+
+closeBtnEl.addEventListener("click", hideModal);
+backdropEl.addEventListener("click", hideModal);
+
+function hideModal() {
   backdropEl.classList.add("hidden");
   modalEl.classList.add("hidden");
-});
+}
+
+function showModal() {
+  backdropEl.classList.remove("hidden");
+  modalEl.classList.remove("hidden");
+}
+
+function getUserById(userId) {
+  const array = users.filter((user) => user.id === userId);
+  return array[0];
+}
 
 //! HELPER FUNCTIONS (UTIL)
 function seperator(x) {
