@@ -21,7 +21,7 @@ let users = [
     following: 272,
     follower: 1200,
     projects: 60,
-    salary: 170000000,
+    salary: 170000009,
     workHours: 50,
   },
   {
@@ -155,74 +155,148 @@ let gradients = [
   "from-fuchsia-500 to-pink-500",
   "from-pink-500 to-rose-500",
 ];
+let statistics = {
+  usersCount: Intl.NumberFormat("en-US").format(users.length),
+  projectsCount: null,
+  averageSalary: null,
+  averageWorkHours: null,
+};
 
 //! ELEMENTS
 const userGridEl = document.querySelector(".user-grid");
+const orderByEl = document.getElementById("order-by");
+const searchInputEl = document.getElementById("search");
+const statisticUserEl = document.getElementById("statistic-users");
+const statisticProjectEl = document.getElementById("statistic-projects");
+const statisticSalaryEl = document.getElementById("statistic-salary");
+const statisticWorkHoursEl = document.getElementById("statistic-work-hours");
 
 //! USER GRID
+function generateUsers(userArray) {
+  userGridEl.innerHTML = "";
+  userArray.forEach(function (user) {
+    const topSalaryLabel =
+      user.id === topUsers.bySalary
+        ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
+             بیشترین حقوق 
+           </span>`
+        : "";
+
+    const topProjectLabel =
+      user.id === topUsers.byProjects
+        ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
+             بیشترین تعداد پروژه
+           </span>`
+        : "";
+
+    const userHTML = `
+        <div
+          class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
+        >
+          <div class="user-card__inner border rounded-lg overflow-hidden">
+            <div
+              class="user-card__head from-emerald-500 to-teal-500 flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r w-full h-20"
+            >
+              ${topSalaryLabel}${topProjectLabel}
+              
+            </div>
+            <div
+              class="user-card__body flex flex-col items-center p-4 border-t"
+            >
+              <div
+                class="user-card__image rounded-full overflow-hidden w-20 -mt-14 border-2 border-white"
+              >
+                <img class="w-100" src="${user.image}" />
+              </div>
+              <div class="user-card__user font-bold mt-2">
+                ${user.firstName} ${user.lastName}
+              </div>
+              <div class="user-card__job"></div>
+            </div>
+            <div class="user-card__footer flex py-2 border-t">
+              <div class="user-card__projects basis-1/3 border-l">
+                <div>${user.following}</div>
+                <div>Following</div>
+              </div>
+              <div class="user-card__follower basis-1/3 border-l">
+                <div>${user.follower}</div>
+                <div>Follower</div>
+              </div>
+              <div class="user-card__following basis-1/3">
+                <div>${user.projects}</div>
+                <div>Projects</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    userGridEl.insertAdjacentHTML("beforeend", userHTML);
+  });
+}
+generateUsers(users);
+
+//! TOP USERS
+topUsers.bySalary = customOrder("salary")[0].id;
+topUsers.byProjects = customOrder("projects")[0].id;
+
+//! SORTING
 function customOrder(field) {
   const usersCopy = [...users];
   return usersCopy.sort((a, b) => b[field] - a[field]);
 }
-
-topUsers.bySalary = customOrder("salary")[0].id;
-topUsers.byProjects = customOrder("projects")[0].id;
-
-users.forEach(function (user) {
-  const topSalaryLabel =
-    user.id === topUsers.bySalary
-      ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
-           بیشترین حقوق 
-         </span>`
-      : "";
-
-  const topProjectLabel =
-    user.id === topUsers.byProjects
-      ? `<span class="dark:bg-gray-700 dark:text-white bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
-           بیشترین تعداد پروژه
-         </span>`
-      : "";
-
-  const userHTML = `
-      <div
-        class="user-card w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-center p-2"
-      >
-        <div class="user-card__inner border rounded-lg overflow-hidden">
-          <div
-            class="user-card__head from-emerald-500 to-teal-500 flex flex-wrap items-start justify-end gap-2 p-2 relative -z-10 bg-gradient-to-r w-full h-20"
-          >
-            ${topSalaryLabel}${topProjectLabel}
-            
-          </div>
-          <div
-            class="user-card__body flex flex-col items-center p-4 border-t"
-          >
-            <div
-              class="user-card__image rounded-full overflow-hidden w-20 -mt-14 border-2 border-white"
-            >
-              <img class="w-100" src="${user.image}" />
-            </div>
-            <div class="user-card__user font-bold mt-2">
-              ${user.firstName} ${user.lastName}
-            </div>
-            <div class="user-card__job"></div>
-          </div>
-          <div class="user-card__footer flex py-2 border-t">
-            <div class="user-card__projects basis-1/3 border-l">
-              <div>${user.following}</div>
-              <div>Following</div>
-            </div>
-            <div class="user-card__follower basis-1/3 border-l">
-              <div>${user.follower}</div>
-              <div>Follower</div>
-            </div>
-            <div class="user-card__following basis-1/3">
-              <div>${user.projects}</div>
-              <div>Projects</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  userGridEl.insertAdjacentHTML("beforeend", userHTML);
+orderByEl.addEventListener("change", function (e) {
+  const field = e.target.value; // "projects" , "follower" , "following" , "id"
+  users = customOrder(field);
+  generateUsers(users);
 });
+
+//! LIVE SEARCH
+function search(query) {
+  return users.filter(function (user) {
+    const fullName = `${user.firstName} ${user.lastName}`;
+    return fullName.includes(query);
+  });
+}
+searchInputEl.addEventListener("keyup", function (e) {
+  search(e.target.value);
+  generateUsers(searchResultUsers);
+});
+searchInputEl.addEventListener("search", function (e) {
+  search(e.target.value);
+  generateUsers(searchResultUsers);
+});
+
+//! STATISTICS
+
+function setStatistics() {
+  let sum_projects = 0;
+  let sum_salary = 0;
+  let sum_workHours = 0;
+  users.forEach(function (user) {
+    sum_projects += user.projects;
+    sum_salary += user.salary;
+    sum_workHours += user.workHours;
+  });
+  statistics.projectsCount = Intl.NumberFormat("en-US").format(sum_projects);
+
+  //? averageSalary
+  const averageSalary = sum_salary / statistics.usersCount;
+  const averageSalaryRounded = Math.round(averageSalary / 1000000);
+  const averageSalaryFormatted =
+    Intl.NumberFormat("en-US").format(averageSalaryRounded);
+  statistics.averageSalary = averageSalaryFormatted;
+
+  //? averageWorkHours
+  const averageWorkHours = sum_workHours / statistics.usersCount;
+  const averageWorkHoursRounded = Math.round(averageWorkHours * 10) / 10;
+  const averageWorkHoursFormatted = Intl.NumberFormat("en-US").format(
+    averageWorkHoursRounded
+  );
+  statistics.averageWorkHours = averageWorkHoursFormatted;
+}
+setStatistics();
+
+statisticUserEl.innerText = statistics.usersCount;
+statisticProjectEl.innerText = "+" + statistics.projectsCount;
+statisticSalaryEl.innerText = statistics.averageSalary + " میلیون";
+statisticWorkHoursEl.innerText = statistics.averageWorkHours + " ساعت";
