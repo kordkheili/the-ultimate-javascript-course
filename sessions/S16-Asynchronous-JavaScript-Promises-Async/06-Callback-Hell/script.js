@@ -10,7 +10,7 @@ function countryCardGenerator(countryName) {
   request.send();
 
   request.addEventListener("load", function () {
-    const countryData = JSON.parse(request.responseText)[0];
+    const countryData = JSON.parse(requestMonokai.responseText)[0];
     const currencyKey = Object.keys(countryData.currencies)[0];
     const languageKey = Object.keys(countryData.languages)[0];
     const countryCard = `
