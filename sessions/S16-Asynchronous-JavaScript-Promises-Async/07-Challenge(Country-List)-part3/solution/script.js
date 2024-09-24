@@ -80,12 +80,7 @@ getAllCountires.open("GET", "https://restcountries.com/v3.1/all");
 getAllCountires.send();
 getAllCountires.addEventListener("load", function () {
   const allCountries = JSON.parse(this.responseText);
-  allCountries.slice(0, 5).forEach((country) => {
+  allCountries.slice(0, 50).forEach((country) => {
     countryCardGenerator(country.name.official);
   });
 });
-
-// countryCardGenerator(
-//   "Hong Kong Special Administrative Region of the People's Republic of China"
-// );
-// countryCardGenerator("brazil");
