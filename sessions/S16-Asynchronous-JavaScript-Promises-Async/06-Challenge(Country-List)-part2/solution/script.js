@@ -27,7 +27,7 @@ function countryCardGenerator(countryName) {
       const weatherData = JSON.parse(request2.responseText);
       console.log(weatherData.main.temp);
       const countryCard = `
-      <div class="country-card max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
+      <div class="country-card max-w-sm w-full w-md-1/2 w-lg-1/3 w-xl-1/4 rounded-lg overflow-hidden shadow-lg bg-white">
           <img
               class="w-full h-48 object-cover aspect-video"
               src="https://flagcdn.com/w640/${countryData.cca2.toLowerCase()}.png"

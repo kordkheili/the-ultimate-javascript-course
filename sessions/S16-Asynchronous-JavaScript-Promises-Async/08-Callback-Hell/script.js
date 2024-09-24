@@ -14,7 +14,7 @@ function countryCardGenerator(countryName) {
     const currencyKey = Object.keys(countryData.currencies)[0];
     const languageKey = Object.keys(countryData.languages)[0];
     const countryCard = `
-        <div class="country-card max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
+        <div class="country-card max-w-sm w-full w-md-1/2 w-lg-1/3 w-xl-1/4 rounded-lg overflow-hidden shadow-lg bg-white">
             <img
                 class="w-full h-48 object-cover aspect-video"
                 src="https://flagcdn.com/w640/${countryData.cca2.toLowerCase()}.png"

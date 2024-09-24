@@ -1,4 +1,5 @@
 const countryListEl = document.querySelector(".country-list");
+const WEATHER_API_KEY = "11ece8b9aa703be97faa76a27cb4d7f5";
 
 function separateNumber(number) {
   return new Intl.NumberFormat("en-US").format(number);
@@ -12,22 +13,22 @@ function countryCardGenerator(countryName) {
 
   request.addEventListener("load", function () {
     const countryData = JSON.parse(request.responseText)[0];
-    console.log(countryData);
+    if (!countryData.currencies || !countryData.capitalInfo.latlng) return;
     const currencyKey = Object.keys(countryData.currencies)[0];
     const languageKey = Object.keys(countryData.languages)[0];
 
     //! request(2) -> weather data
+    const [lat, lon] = countryData.capitalInfo.latlng;
     const request2 = new XMLHttpRequest();
     request2.open(
       "GET",
-      `https://api.openweathermap.org/data/2.5/weather?q=${countryData.capital[0]}&appid=11ece8b9aa703be97faa76a27cb4d7f5&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`
     );
     request2.send();
     request2.addEventListener("load", function () {
       const weatherData = JSON.parse(request2.responseText);
-      console.log(weatherData.main.temp);
       const countryCard = `
-      <div class="country-card max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
+      <div class="country-card max-w-sm w-full w-md-1/2 w-lg-1/3 w-xl-1/4 rounded-lg overflow-hidden shadow-lg bg-white">
           <img
               class="w-full h-48 object-cover aspect-video"
               src="https://flagcdn.com/w640/${countryData.cca2.toLowerCase()}.png"
@@ -72,10 +73,19 @@ function countryCardGenerator(countryName) {
     });
   });
 }
-countryCardGenerator("iran");
-countryCardGenerator("brazil");
-countryCardGenerator("poland");
-countryCardGenerator("usa");
-countryCardGenerator("canada");
-countryCardGenerator("finland");
-countryCardGenerator("qatar");
+
+//! request(3) -> All Countries
+const getAllCountires = new XMLHttpRequest();
+getAllCountires.open("GET", "https://restcountries.com/v3.1/all");
+getAllCountires.send();
+getAllCountires.addEventListener("load", function () {
+  const allCountries = JSON.parse(this.responseText);
+  allCountries.slice(0, 5).forEach((country) => {
+    countryCardGenerator(country.name.official);
+  });
+});
+
+// countryCardGenerator(
+//   "Hong Kong Special Administrative Region of the People's Republic of China"
+// );
+// countryCardGenerator("brazil");
