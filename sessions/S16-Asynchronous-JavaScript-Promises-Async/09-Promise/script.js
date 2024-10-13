@@ -1,28 +1,28 @@
-// //! Promise
-// //! 1. Create Promise
-// const myPromise = new Promise((khoshGhowli, badGhowli) => {
-//   const firstName = prompt("اسمت چیه گوگولی؟");
-//   if (firstName === "علیرضا") {
-//     badGhowli("شرمنده😢");
-//   } else {
-//     khoshGhowli("😊");
-//   }
-// });
+//! Promise
+//! 1. Create Promise
+const myPromise = new Promise((khoshGhowli, badGhowli) => {
+  const firstName = prompt("اسمت چیه گوگولی؟");
+  if (firstName === "علیرضا") {
+    badGhowli("شرمنده😢");
+  } else {
+    khoshGhowli("😊");
+  }
+});
 
-// //! 2. Consuming Promise
-// myPromise
-//   .then((result) => {
-//     //? successful
-//     console.log(result);
-//   })
-//   .catch((result) => {
-//     //? failed
-//     console.log(result);
-//   })
-//   .finally(() => {
-//     //? always
-//     console.log("تمام");
-//   });
+//! 2. Consuming Promise
+myPromise
+  .then((result) => {
+    //? successful
+    console.log(result);
+  })
+  .catch((result) => {
+    //? failed
+    console.log(result);
+  })
+  .finally(() => {
+    //? always
+    console.log("تمام");
+  });
 
 //! Example: Pizza Delivery 👇🏻
 
